@@ -1,5 +1,5 @@
 {
-  "name": "ts-flash",
+  "name": "flashpod",
   "version": "0.1.0",
   "description": "TypeScript-first wrapper for RunPod Flash: typed config, generated Python bridge, CLI lifecycle, and endpoint client.",
   "type": "module",
@@ -7,12 +7,12 @@
   "author": "Jalil <reachjalil@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/reachjalil/ts-flash.git"
+    "url": "git+https://github.com/reachjalil/flashpod.git"
   },
   "bugs": {
-    "url": "https://github.com/reachjalil/ts-flash/issues"
+    "url": "https://github.com/reachjalil/flashpod/issues"
   },
-  "homepage": "https://github.com/reachjalil/ts-flash#readme",
+  "homepage": "https://github.com/reachjalil/flashpod#readme",
   "keywords": [
     "runpod",
     "flash",
@@ -23,7 +23,7 @@
     "python-bridge"
   ],
   "bin": {
-    "ts-flash": "./dist/cli.js"
+    "flashpod": "./dist/cli.js"
   },
   "exports": {
     ".": {

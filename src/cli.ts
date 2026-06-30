@@ -70,7 +70,7 @@ async function generate(parsed: ParsedArgs) {
 }
 
 function initConfig(parsed: ParsedArgs): void {
-  const out = stringFlag(parsed, "--out") ?? "ts-flash.config.ts";
+  const out = stringFlag(parsed, "--out") ?? "flashpod.config.ts";
   const path = resolve(process.cwd(), out);
   if (existsSync(path) && !parsed.flags.has("--force")) {
     throw new Error(`${out} already exists. Re-run with --force to overwrite.`);
@@ -80,7 +80,7 @@ function initConfig(parsed: ParsedArgs): void {
 }
 
 async function doctor(): Promise<void> {
-  console.log("ts-flash doctor");
+  console.log("flashpod doctor");
   console.log(`cwd: ${process.cwd()}`);
   console.log(`RUNPOD_API_KEY: ${process.env.RUNPOD_API_KEY ? "set" : "missing"}`);
   try {
@@ -159,35 +159,35 @@ function firstLine(value: string): string {
 }
 
 function printHelp(): void {
-  console.log(`ts-flash
+  console.log(`flashpod
 
 TypeScript-first wrapper for RunPod Flash.
 
 Usage:
-  ts-flash init [--out ts-flash.config.ts]
-  ts-flash generate [--config ts-flash.config.ts] [--out flash_app.py] [--dry-run]
-  ts-flash dev [flash args...]
-  ts-flash build [flash args...]
-  ts-flash deploy [flash args...]
-  ts-flash login
-  ts-flash doctor
+  flashpod init [--out flashpod.config.ts]
+  flashpod generate [--config flashpod.config.ts] [--out flash_app.py] [--dry-run]
+  flashpod dev [flash args...]
+  flashpod build [flash args...]
+  flashpod deploy [flash args...]
+  flashpod login
+  flashpod doctor
 
 Notes:
   - dev/build/deploy generate the Python bridge first, then call the official flash CLI.
   - install Flash with: uv tool install runpod-flash
-  - set TS_FLASH_FLASH_BIN if your flash executable is not on PATH.
+  - set FLASHPOD_FLASH_BIN if your flash executable is not on PATH.
 `);
 }
 
 function starterConfig(): string {
-  return `import { CpuInstanceType, defineConfig, endpoint, handler } from "ts-flash";
+  return `import { CpuInstanceType, defineConfig, endpoint, handler } from "flashpod";
 
 export default defineConfig({
-  app: "${basename(process.cwd()) || "ts-flash-app"}",
+  app: "${basename(process.cwd()) || "flashpod-app"}",
   bridgeFile: "flash_app.py",
   endpoints: [
     endpoint.queue({
-      name: "hello-ts-flash",
+      name: "hello-flashpod",
       cpu: CpuInstanceType.CPU3C_1_2,
       workers: [0, 1],
       handler: handler.json({

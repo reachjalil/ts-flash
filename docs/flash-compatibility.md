@@ -1,6 +1,6 @@
 # Flash Compatibility
 
-`ts-flash` follows the official Flash application shape instead of replacing it.
+`flashpod` follows the official Flash application shape instead of replacing it.
 
 The generated bridge is a normal Python file at the project root, usually
 `flash_app.py`. That is deliberate: Flash discovers endpoints by scanning Python
@@ -27,7 +27,7 @@ The test suite protects this contract in three ways:
 - CI installs `runpod-flash`, generates the example bridge, compiles it, and
   imports it.
 - Package smoke tests install the packed npm tarball into a temporary consumer
-  project and run `ts-flash generate` through the installed binary.
+  project and run `flashpod generate` through the installed binary.
 
 This makes the first version useful without pretending the stable RunPod
 deployment logic should be rewritten in a hackathon weekend.

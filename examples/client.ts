@@ -1,4 +1,4 @@
-import { FlashClient } from "ts-flash";
+import { FlashClient } from "flashpod";
 
 const client = new FlashClient();
 const endpoint = client.endpoint("YOUR_ENDPOINT_ID");

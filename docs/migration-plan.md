@@ -1,6 +1,6 @@
 # Migration Plan
 
-`ts-flash` starts as a TypeScript wrapper around the official Python Flash SDK.
+`flashpod` starts as a TypeScript wrapper around the official Python Flash SDK.
 That is intentional: RunPod already solved deployment packaging, endpoint
 provisioning, and worker runtime behavior in `runpod-flash`.
 

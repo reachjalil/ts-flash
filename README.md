@@ -1,7 +1,7 @@
-# ts-flash
+# flashpod
 
-[![ci](https://github.com/reachjalil/ts-flash/actions/workflows/ci.yml/badge.svg)](https://github.com/reachjalil/ts-flash/actions/workflows/ci.yml)
-[![npm version](https://img.shields.io/npm/v/ts-flash.svg)](https://www.npmjs.com/package/ts-flash)
+[![ci](https://github.com/reachjalil/flashpod/actions/workflows/ci.yml/badge.svg)](https://github.com/reachjalil/flashpod/actions/workflows/ci.yml)
+[![npm version](https://img.shields.io/npm/v/flashpod.svg)](https://www.npmjs.com/package/flashpod)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Node.js >=20.11](https://img.shields.io/badge/node-%3E%3D20.11-339933.svg)](package.json)
 
@@ -10,7 +10,7 @@ TypeScript-first wrapper for [RunPod Flash](https://github.com/runpod/flash).
 This is a small hackathon-friendly package with a practical joke inside: the
 best Python is the Python your TypeScript generated for you.
 
-`ts-flash` lets you define Flash endpoints in TypeScript, generate the tiny
+`flashpod` lets you define Flash endpoints in TypeScript, generate the tiny
 Python bridge that the official Flash builder expects, and then call
 `flash dev`, `flash build`, or `flash deploy` from the same CLI.
 
@@ -18,17 +18,17 @@ It is not an official RunPod package.
 
 ## What works now
 
-- Typed endpoint config in `ts-flash.config.ts`
+- Typed endpoint config in `flashpod.config.ts`
 - Generated `flash_app.py` bridge for queue and load-balanced endpoints
 - CLI lifecycle wrapper around the official `flash` command
 - TypeScript client for RunPod queue and load-balanced endpoint calls
-- npm-ready package named `ts-flash`
+- npm-ready package named `flashpod`
 - Unit, CLI e2e, package-smoke, and generated Python bridge tests
 
 ## Install
 
 ```bash
-npm install ts-flash
+npm install flashpod
 uv tool install runpod-flash
 ```
 
@@ -38,18 +38,18 @@ version delegates deployment to `runpod-flash`.
 ## Quickstart
 
 ```bash
-npx ts-flash init
-npx ts-flash generate
-npx ts-flash deploy --env production
+npx flashpod init
+npx flashpod generate
+npx flashpod deploy --env production
 ```
 
 Example config:
 
 ```ts
-import { CpuInstanceType, defineConfig, endpoint, handler, route } from "ts-flash";
+import { CpuInstanceType, defineConfig, endpoint, handler, route } from "flashpod";
 
 export default defineConfig({
-  app: "hello-ts-flash",
+  app: "hello-flashpod",
   bridgeFile: "flash_app.py",
   endpoints: [
     endpoint.queue({
@@ -78,13 +78,13 @@ export default defineConfig({
 Generated bridge:
 
 ```bash
-npx ts-flash generate --dry-run
+npx flashpod generate --dry-run
 ```
 
 ## Calling endpoints from TypeScript
 
 ```ts
-import { FlashClient } from "ts-flash";
+import { FlashClient } from "flashpod";
 
 const client = new FlashClient({ apiKey: process.env.RUNPOD_API_KEY });
 const endpoint = client.endpoint("YOUR_ENDPOINT_ID");
@@ -99,13 +99,13 @@ console.log(job.output);
 ## CLI
 
 ```bash
-ts-flash init
-ts-flash generate [--config ts-flash.config.ts] [--out flash_app.py]
-ts-flash dev [flash args...]
-ts-flash build [flash args...]
-ts-flash deploy [flash args...]
-ts-flash login
-ts-flash doctor
+flashpod init
+flashpod generate [--config flashpod.config.ts] [--out flash_app.py]
+flashpod dev [flash args...]
+flashpod build [flash args...]
+flashpod deploy [flash args...]
+flashpod login
+flashpod doctor
 ```
 
 `dev`, `build`, and `deploy` generate the bridge first, then run the official

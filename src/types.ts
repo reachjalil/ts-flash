@@ -108,11 +108,14 @@ export type FlashEndpointConfig =
   | LoadBalancedEndpointConfig
   | ExternalImageEndpointConfig;
 
-export type TsFlashConfig = {
+export type FlashpodConfig = {
   readonly app?: string;
   readonly bridgeFile?: string;
   readonly endpoints: readonly FlashEndpointConfig[];
 };
+
+/** @deprecated Use FlashpodConfig. */
+export type TsFlashConfig = FlashpodConfig;
 
 export type GenerateOptions = {
   readonly banner?: string;
@@ -120,7 +123,7 @@ export type GenerateOptions = {
 
 export type LoadedConfig = {
   readonly path: string;
-  readonly config: TsFlashConfig;
+  readonly config: FlashpodConfig;
 };
 
 export type FlashClientOptions = {

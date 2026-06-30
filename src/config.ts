@@ -7,10 +7,10 @@ import type {
   PythonHandler,
   QueueEndpointConfig,
   RouteConfig,
-  TsFlashConfig,
+  FlashpodConfig,
 } from "./types.js";
 
-export function defineConfig(config: TsFlashConfig): TsFlashConfig {
+export function defineConfig(config: FlashpodConfig): FlashpodConfig {
   return config;
 }
 

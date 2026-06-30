@@ -17,12 +17,12 @@ function runNode(args, options = {}) {
 }
 
 function tempProject() {
-  return mkdtempSync(join(tmpdir(), "ts-flash-e2e-"));
+  return mkdtempSync(join(tmpdir(), "flashpod-e2e-"));
 }
 
 function writeConfig(projectDir) {
   writeFileSync(
-    join(projectDir, "ts-flash.config.mjs"),
+    join(projectDir, "flashpod.config.mjs"),
     `
 import { CpuInstanceType, defineConfig, endpoint, handler, route } from ${JSON.stringify(join(repoRoot, "dist", "index.js"))};
 
@@ -52,7 +52,7 @@ test("generate writes a Flash-compatible Python bridge", () => {
   const projectDir = tempProject();
   writeConfig(projectDir);
 
-  const result = runNode([cliPath, "generate", "--config", "ts-flash.config.mjs"], { cwd: projectDir });
+  const result = runNode([cliPath, "generate", "--config", "flashpod.config.mjs"], { cwd: projectDir });
 
   assert.equal(result.status, 0, result.stderr);
   const bridgePath = join(projectDir, "flash_app.py");
@@ -86,9 +86,9 @@ writeFileSync(${JSON.stringify(callsPath)}, JSON.stringify({
   );
   chmodSync(fakeFlash, 0o755);
 
-  const result = runNode([cliPath, "deploy", "--config", "ts-flash.config.mjs", "--env", "staging"], {
+  const result = runNode([cliPath, "deploy", "--config", "flashpod.config.mjs", "--env", "staging"], {
     cwd: projectDir,
-    env: { TS_FLASH_FLASH_BIN: fakeFlash },
+    env: { FLASHPOD_FLASH_BIN: fakeFlash },
   });
 
   assert.equal(result.status, 0, result.stderr);

@@ -41,6 +41,7 @@ export type {
   QueueEndpointConfig,
   QueueHandler,
   RouteConfig,
+  FlashpodConfig,
   TsFlashConfig,
   Workers,
 } from "./types.js";

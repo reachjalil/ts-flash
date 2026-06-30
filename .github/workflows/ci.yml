@@ -37,6 +37,6 @@ jobs:
       - run: npm run build
       - run: python -m pip install --upgrade pip
       - run: python -m pip install runpod-flash
-      - run: node dist/cli.js generate --config examples/ts-flash.config.ts --out flash_app.py
+      - run: node dist/cli.js generate --config examples/flashpod.config.ts --out flash_app.py
       - run: python -m py_compile flash_app.py
       - run: python -c "import flash_app; print('flash bridge import ok')"

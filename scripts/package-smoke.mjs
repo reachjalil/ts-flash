@@ -23,7 +23,7 @@ for (const file of expected) {
   );
 }
 
-const projectDir = mkdtempSync(join(tmpdir(), "ts-flash-package-"));
+const projectDir = mkdtempSync(join(tmpdir(), "flashpod-package-"));
 writeFileSync(
   join(projectDir, "package.json"),
   JSON.stringify({ name: "consumer", type: "module", private: true }, null, 2),
@@ -36,8 +36,8 @@ const install = spawnSync("npm", ["install", "--ignore-scripts", tarball], {
 assert.equal(install.status, 0, install.stderr);
 
 writeFileSync(
-  join(projectDir, "ts-flash.config.mjs"),
-  `import { CpuInstanceType, defineConfig, endpoint, handler } from "ts-flash";
+  join(projectDir, "flashpod.config.mjs"),
+  `import { CpuInstanceType, defineConfig, endpoint, handler } from "flashpod";
 
 export default defineConfig({
   endpoints: [
@@ -52,14 +52,14 @@ export default defineConfig({
   "utf8",
 );
 
-const generate = spawnSync(process.execPath, ["node_modules/.bin/ts-flash", "generate", "--dry-run"], {
+const generate = spawnSync(process.execPath, ["node_modules/.bin/flashpod", "generate", "--dry-run"], {
   cwd: projectDir,
   encoding: "utf8",
 });
 assert.equal(generate.status, 0, generate.stderr);
 assert.match(generate.stdout, /@Endpoint\(name="package-smoke"/);
 
-const cliSource = readFileSync(join(projectDir, "node_modules", "ts-flash", "dist", "cli.js"), "utf8");
+const cliSource = readFileSync(join(projectDir, "node_modules", "flashpod", "dist", "cli.js"), "utf8");
 assert.match(cliSource, /TypeScript-first wrapper/);
 
 console.log(`package smoke ok: ${packed.filename}`);

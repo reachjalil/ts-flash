@@ -1,7 +1,7 @@
-import { CpuInstanceType, GpuType, defineConfig, endpoint, handler, route } from "ts-flash";
+import { CpuInstanceType, GpuType, defineConfig, endpoint, handler, route } from "flashpod";
 
 export default defineConfig({
-  app: "ts-flash-demo",
+  app: "flashpod-demo",
   bridgeFile: "flash_app.py",
   endpoints: [
     endpoint.queue({
