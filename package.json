@@ -1,0 +1,60 @@
+{
+  "name": "ts-flash",
+  "version": "0.1.0",
+  "description": "TypeScript-first wrapper for RunPod Flash: typed config, generated Python bridge, CLI lifecycle, and endpoint client.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Jalil <reachjalil@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reachjalil/ts-flash.git"
+  },
+  "bugs": {
+    "url": "https://github.com/reachjalil/ts-flash/issues"
+  },
+  "homepage": "https://github.com/reachjalil/ts-flash#readme",
+  "keywords": [
+    "runpod",
+    "flash",
+    "typescript",
+    "serverless",
+    "gpu",
+    "ai",
+    "python-bridge"
+  ],
+  "bin": {
+    "ts-flash": "./dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "npm run build && node --test test/*.test.mjs",
+    "check": "npm run typecheck && npm test",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run check"
+  },
+  "dependencies": {
+    "jiti": "^2.4.2"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.8",
+    "typescript": "^5.8.3"
+  },
+  "engines": {
+    "node": ">=20.11"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
